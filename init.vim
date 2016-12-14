@@ -1,24 +1,5 @@
-let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
-let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
-let g:python2_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
 " windows only commands
 if has('win32') || has('win64')
-  " If the shell is set to "/bin/bash" then this is a windows gvim launched from
-  " cygwin, correct the shell.
-  if &shell =~ 'bash'
-    set shell=C:\Windows\system32\cmd.exe
-    set shellcmdflag=\\c
-    "set shellpipe=>%s 2>&1
-    let &shellpipe = ">%s 2>&1"
-    "set shellredir=>%s 2>&1
-    let &shellredir = ">%s 2>&1"
-    set shellxquote=(
-    set shellxescape="&|<>()@^"
-  endif
-
-  " avoid having the menu and toolbar elements in the gui
-  set guioptions=erL
-
   " For windows systems use the vimfiles directory
   set runtimepath=~/.vim/,$VIMRUNTIME
 
@@ -30,34 +11,10 @@ if has('win32') || has('win64')
   set undodir=~/.undo,$TMP
   set undofile
 
-  " set my font preference
-  "set guifont=Sheldon_Narrow:h9:cANSI
-  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h6.5
-  " set guifont=Ubuntu\ Mono\ derivative\ Powerline:10.5
-  " set guifont=Inconsolata\ for\ Powerline\ Medium:h10.5
-  "set guifont=Envy_Code_R:h8:cANSI
-  " set guifont=Hack:h10.5
   set encoding=utf-8
 
   " force vim files to be unix format
   autocmd FileType vim,python set fileformat=unix
-elseif has('win32unix')
-  " avoid having the menu and toolbar elements in the gui, and add an icon
-  set guioptions=eirL
-
-  " For cygwin use the same directories as windows
-  set runtimepath=~/.vim/,$VIMRUNTIME
-  set backupdir=~/.backup,$TMP
-  set directory=~/.swap,$TMP
-
-  " Define where to store undo files and enable persistent undo
-  set undodir=~/.undo,$TMP
-  set undofile
-
-  " set my gtk-vim compatible font preference (Sheldon renders badly for some
-  " reason in GTK)
-  "set guifont=Envy\ Code\ R\ 8
-  "set guifont=ProFontWindows\ 9
 else
   " For *ix systems use the .vim directory
   set runtimepath=~/.vim/,$VIMRUNTIME
@@ -70,14 +27,11 @@ else
   set undodir=~/.undo,$TMP
   set undofile
 
-  " set my font preference
-  "set guifont=FreeMono\ 10
-  "set guifont=DejaVu\ Sans\ Mono\ 9
-  "set guifont=Sheldon_Narrow:h9:cANSI
-  "set guifont=ProFontWindows\ 9
-  "set guifont=ProFont\ 10
-  "set guifont=AnonymousPro\ 9
-  "set guifont=Envy_Code_R:h8:cANSI
+  " Python paths
+  let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
+  let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
+  let g:python2_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
+
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -370,7 +324,11 @@ endif
 " GutenTags settings
 set statusline+=%{gutentags#statusline('[Generating...]')}
 " Ctags executable (path to cygwin DLL is required to use cygwin ctags)
-let g:gutentags_ctags_executable = '/usr/bin/ctags'
+if has('unix')
+    let g:gutentags_ctags_executable = '/usr/bin/ctags'
+else
+    let g:gutentags_ctags_executable = 'C:/cygwin64/bin/ctags.exe'
+endif
 let g:gutentags_cache_dir = '~/.project_tags'
 
 " vim-ariline settings
