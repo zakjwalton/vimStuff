@@ -15,6 +15,8 @@ if has('win32') || has('win64')
 
   " force vim files to be unix format
   autocmd FileType vim,python set fileformat=unix
+  let g:python3_host_prog = '"C:\\Program Files ^(x86^)\\Python35\\python.exe"'
+  let g:python_host_prog = '"C:\\Program Files ^(x86^)\\Python35\\python.exe"'
 else
   " For *ix systems use the .vim directory
   set runtimepath=~/.vim/,$VIMRUNTIME
@@ -101,9 +103,6 @@ endif
 
 " Settings for better whitespace
 autocmd BufWritePre * StripWhitespace
-
-if has("gui_running")
-endif
 
 " Set relative line numbers
 set relativenumber
