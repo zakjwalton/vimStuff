@@ -1,38 +1,38 @@
 " windows only commands
 if has('win32') || has('win64')
-  " For windows systems use the vimfiles directory
-  set runtimepath=~/.vim/,$VIMRUNTIME
+    " For windows systems use the vimfiles directory
+    set runtimepath=~/.vim/,$VIMRUNTIME
 
-  " keep the backups in a manageable place
-  set backupdir=~/.backup,$TMP
-  set directory=~/.swap,$TMP
+    " keep the backups in a manageable place
+    set backupdir=~/.backup,$TMP
+    set directory=~/.swap,$TMP
 
-  " Define where to store undo files and enable persistent undo
-  set undodir=~/.undo,$TMP
-  set undofile
+    " Define where to store undo files and enable persistent undo
+    set undodir=~/.undo,$TMP
+    set undofile
 
-  set encoding=utf-8
+    set encoding=utf-8
 
-  " force vim files to be unix format
-  autocmd FileType vim,python set fileformat=unix
-  let g:python3_host_prog = '"C:\\Program Files ^(x86^)\\Python35\\python.exe"'
-  let g:python_host_prog = '"C:\\Program Files ^(x86^)\\Python35\\python.exe"'
+    " force vim files to be unix format
+    autocmd FileType vim,python set fileformat=unix
+    let g:python3_host_prog = '"C:\\Program Files ^(x86^)\\Python35\\python.exe"'
+    let g:python_host_prog = '"C:\\Program Files ^(x86^)\\Python35\\python.exe"'
 else
-  " For *ix systems use the .vim directory
-  set runtimepath=~/.vim/,$VIMRUNTIME
+    " For *ix systems use the .vim directory
+    set runtimepath=~/.vim/,$VIMRUNTIME
 
-  " keep the backups in a manageable place
-  set backupdir=~/.backup,$TMP
-  set directory=~/.swap,$TMP
+    " keep the backups in a manageable place
+    set backupdir=~/.backup,$TMP
+    set directory=~/.swap,$TMP
 
-  " Define where to store undo files and enable persistent undo
-  set undodir=~/.undo,$TMP
-  set undofile
+    " Define where to store undo files and enable persistent undo
+    set undodir=~/.undo,$TMP
+    set undofile
 
-  " Python paths
-  let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
-  let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
-  let g:python2_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
+    " Python paths
+    let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
+    let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
+    let g:python2_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
 
 endif
 
@@ -76,8 +76,8 @@ if has('nvim')
 
     " Python
     let g:neomake_python_flake8_maker = {
-            \ 'args': ['--max-line-length=140', '--ignore=E402']
-            \ }
+                \ 'args': ['--max-line-length=140', '--ignore=E402']
+                \ }
     let g:neomake_c_enabled_makers = []
     let g:neomake_cpp_enabled_makers = []
 
@@ -132,15 +132,15 @@ set nrformats=alpha,hex
 
 " Configure Inccommand
 if exists('&inccommand')
-  set inccommand=split
+    set inccommand=split
 
-  function! TJToggleInccommand() abort
-    if &inccommand ==? 'split'
-      set inccommand=nosplit
-    else
-      set inccommand=split
-    endif
-  endfunction
+    function! TJToggleInccommand() abort
+        if &inccommand ==? 'split'
+            set inccommand=nosplit
+        else
+            set inccommand=split
+        endif
+    endfunction
 endif
 
 " Define the set of keyword characters I like
@@ -202,7 +202,7 @@ set expandtab
 
 " setup spell checking variables for version 7 and up
 if v:version >= 700 && has("gui_running")
-  set spell spelllang=en_us
+    set spell spelllang=en_us
 endif
 
 " setup the options that the behave command does.. but differently than either
@@ -210,13 +210,13 @@ endif
 set selection=exclusive
 
 if has("gui_running")
-  set mousemodel=extend
-  set selectmode=mouse,key
-  set keymodel=startsel,stopsel
+    set mousemodel=extend
+    set selectmode=mouse,key
+    set keymodel=startsel,stopsel
 else
-  set mousemodel=extend
-  set selectmode=key
-  set keymodel=startsel,stopsel
+    set mousemodel=extend
+    set selectmode=key
+    set keymodel=startsel,stopsel
 endif
 
 " enable Vim to backspace over anything
@@ -246,9 +246,9 @@ set wildmode=longest,list
 
 " setup the listchars options, nbsp was added in version 7
 if v:version >= 700
-  set listchars=eol:$,tab:>-,trail:-,extends:<,precedes:>,nbsp:%
+    set listchars=eol:$,tab:>-,trail:-,extends:<,precedes:>,nbsp:%
 else
-  set listchars=eol:$,tab:>-,trail:-,extends:<,precedes:>
+    set listchars=eol:$,tab:>-,trail:-,extends:<,precedes:>
 endif
 
 " setup the scrolloff option so that I can see a few lines below the cursor
@@ -256,8 +256,8 @@ set scrolloff=10
 
 " setup tab options
 if v:version >= 700
-  "allow a lot of tabs
-  set tabpagemax=25
+    "allow a lot of tabs
+    set tabpagemax=25
 endif
 
 " set the correct gui colorscheme
@@ -268,13 +268,13 @@ set background=dark
 set cursorline
 
 if has("gui_running")
-  "set the window to 85 columns wide to accommodate the line numbers which are
-  "turned on by default
-  "set lines=55 columns=85
-  "set lines=50 columns=85
+    "set the window to 85 columns wide to accommodate the line numbers which are
+    "turned on by default
+    "set lines=55 columns=85
+    "set lines=50 columns=85
 
-  "Make the screen wider than usual
-  set lines=55 columns=100
+    "Make the screen wider than usual
+    set lines=55 columns=100
 end
 
 " show line numbers
@@ -316,8 +316,8 @@ let g:netrw_winsize = 30
 let g:netrw_browse_split = 4
 " For some reason netrw has trouble with these settings in windows
 if has("win32") || has("win64")
-  let g:netrw_localcopycmd = 'C:/Windows/System32/cmd.exe /c copy'
-  let g:netrw_localmovecmd = 'C:/Windows/System32/cmd.exe /c move'
+    let g:netrw_localcopycmd = 'C:/Windows/System32/cmd.exe /c copy'
+    let g:netrw_localmovecmd = 'C:/Windows/System32/cmd.exe /c move'
 endif
 
 " GutenTags settings
