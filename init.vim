@@ -191,7 +191,7 @@ let g:sh_noisk = 1
 " (disable autowrap for normal buffers)
 " set formatoptions=croqwan21
 set formatoptions=tcqj
-" set textwidth=80
+set textwidth=100
 set autoindent
 
 syntax on
