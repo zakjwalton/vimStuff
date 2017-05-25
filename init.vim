@@ -49,6 +49,7 @@ Plug 'godlygeek/tabular'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Shougo/neoyank.vim'
 Plug 'peterhoeg/vim-qml'
 Plug 'tjdevries/edit_alternate.vim'
@@ -183,8 +184,8 @@ let g:sql_type_default = 'sqlite3'
 " Set bash/shell script options
 let g:is_bash = 1
 " Enable function, heredoc, if/do/for folding
-let g:sh_fold_enabled = 1 + 2 + 4
-let g:sh_noisk = 1
+" let g:sh_fold_enabled = 1 + 2 + 4
+" let g:sh_noisk = 1
 
 " Set the default format options, text width and auto indent for normal
 " buffers.
@@ -324,7 +325,7 @@ endif
 set statusline+=%{gutentags#statusline('[Generating...]')}
 " Ctags executable (path to cygwin DLL is required to use cygwin ctags)
 if has('unix')
-    let g:gutentags_ctags_executable = '/usr/bin/ctags'
+    " let g:gutentags_ctags_executable = '/usr/bin/ctags'
 else
     let g:gutentags_ctags_executable = 'C:/cygwin64/bin/ctags.exe'
 endif
@@ -386,7 +387,7 @@ vmap <C-f> "0y:vimgrep /<C-R>0/gj *<CR>
 
 " Unite mappings
 let g:unite_source_history_yank_enable = 1
-nnoremap <leader>f :Unite -start-insert -no-split file_rec:!<CR>
+nnoremap <leader>f :Unite -start-insert -no-split file_rec/async:!<CR>
 nnoremap <leader>b :Unite -start-insert -no-split buffer<CR>
 nnoremap <leader>y :Unite -start-insert -no-split history/yank<CR>
 
