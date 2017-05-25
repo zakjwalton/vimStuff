@@ -1,0 +1,9 @@
+[user]
+	email = zachary.walton@dornerworks.com
+	name = Zak Walton
+[push]
+	default = simple
+[color]
+	ui = true
+[core]
+	editor = nvim
