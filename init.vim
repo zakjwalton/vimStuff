@@ -348,6 +348,9 @@ nmap <leader>t :TagbarToggle<CR>
 " last-position-jump (if TagsParser isn't on)
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+" Remap to to tag to ctrl \
+nnoremap t      <C-]>
+
 " Some commands to reduce the number of keystrokes required to move between
 " windows
 nnoremap <C-j>      <C-W><C-J>
@@ -399,6 +402,18 @@ nnoremap <leader>th :set invhlsearch<CR>
 
 " Edit alternate mappings
 nnoremap <leader>h :EditAlternate<CR>
+
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 " -----------------------------------------------------------------------------------------------------
 " End Mappings
